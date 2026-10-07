@@ -45,3 +45,17 @@ This avoids sending an arbitrary paragraph and saves inference work.
 It does not establish whether an answer exists: keyword search can
 miss differently worded evidence, and positive matches can still
 be insufficient.
+
+| Your familiar stack | Our setup |
+|---|---|
+| Spring Boot server | Ollama server |
+| REST endpoint | `/api/generate` |
+| JSON request body | Model name, prompt, and options |
+| Service called by the endpoint | Model inference engine executing Qwen |
+| JSON response | Generated text and metadata |
+| Java API client | Our Python script |
+
+The flow is:
+Python sends HTTP POST → Ollama reads the JSON → loads/runs Qwen → returns JSON → Python displays the answer
+Qwen itself is primarily trained model weights plus its configuration, rather than a web application. Ollama supplies the HTTP interface and the runtime that performs inference.
+Later, our own backend will sit between the UI and Ollama, handling document retrieval, validation, and application logic.
