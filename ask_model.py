@@ -2,9 +2,15 @@ import json
 import time
 import urllib.request
 
+question = input("Your question: ").strip()
+
+if not question:
+    print("Please enter a question.")
+    raise SystemExit
+    
 payload = {
     "model": "qwen3:0.6b",
-    "prompt": "Explain an API timeout in two sentences.",
+    "prompt": question,
     "stream": False,
     "think": False,
     "options": {
