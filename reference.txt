@@ -1,0 +1,7 @@
+An API timeout means an operation did not complete within its
+configured time limit. A client can time out without receiving
+any HTTP response. A timeout is not itself an HTTP status code.
+
+HTTP 500 is an HTTP response status indicating that the server
+encountered an unexpected condition that prevented it from
+fulfilling the request.
