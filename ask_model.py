@@ -8,9 +8,32 @@ if not question:
     print("Please enter a question.")
     raise SystemExit
     
+reference = """
+An API timeout means an operation did not complete within its
+configured time limit. A client can time out without receiving
+any HTTP response. A timeout is not itself an HTTP status code.
+
+HTTP 500 is an HTTP response status indicating that the server
+encountered an unexpected condition that prevented it from
+fulfilling the request.
+"""
+
+grounded_prompt = f"""
+Answer the question using only the reference below.
+If the reference does not contain the answer, say:
+"The reference does not contain enough information."
+Answer in two sentences.
+
+Reference:
+{reference}
+
+Question:
+{question}
+"""    
+    
 payload = {
     "model": "qwen3:0.6b",
-    "prompt": question,
+    "prompt": grounded_prompt,
     "stream": False,
     "think": False,
     "options": {
