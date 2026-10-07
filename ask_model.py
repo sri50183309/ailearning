@@ -9,7 +9,7 @@ if not question:
     print("Please enter a question.")
     raise SystemExit
     
-reference = reference_path = Path(__file__).resolve().parent / "reference.txt"
+reference_path = Path(__file__).resolve().parent / "reference.txt"
 
 try:
     reference = reference_path.read_text(encoding="utf-8")
@@ -22,18 +22,14 @@ if not reference.strip():
     raise SystemExit(1)
 
 grounded_prompt = f"""
-Answer the question using only the reference below.
-If the reference does not contain the answer, say:
-"The reference does not contain enough information."
-Use up to two sentences. Do not add claims beyond the reference.
-Do not label timeouts as client-side or server-side issues.
-Do not include formatting commentary such as "(Two sentences)".
-
 Reference:
 {reference}
 
 Question:
 {question}
+
+Copy the sentence from the reference that directly answers
+the question. Return only that sentence.
 """    
     
 payload = {
@@ -44,9 +40,14 @@ payload = {
     "options": {
         "num_ctx": 1024,
         "num_predict": 128,
+        "temperature": 0,
     },
     "keep_alive": 0,
 }
+
+# print("\n--- Prompt sent to Ollama ---")
+# print(payload["prompt"])
+# print("--- End of prompt ---\n")
 
 request = urllib.request.Request(
     "http://localhost:11434/api/generate",
@@ -54,6 +55,7 @@ request = urllib.request.Request(
     headers={"Content-Type": "application/json"},
     method="POST",
 )
+
 
 print("Asking the local model…")
 started = time.perf_counter()

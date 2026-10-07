@@ -1,0 +1,32 @@
+[
+  {
+    "id": "timeout_definition",
+    "question": "What is an API timeout?",
+    "expected": "An operation did not complete within its configured time limit.",
+    "must_avoid": "Claiming every timeout is caused by the client."
+  },
+  {
+    "id": "http_500_definition",
+    "question": "What does HTTP 500 mean?",
+    "expected": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
+    "must_avoid": "Claiming HTTP 500 means a timeout."
+  },
+  {
+    "id": "timeout_without_response",
+    "question": "Can a client time out without receiving an HTTP response?",
+    "expected": "Yes, a client can time out without receiving an HTTP response.",
+    "must_avoid": "Claiming this happens in every timeout."
+  },
+  {
+    "id": "timeout_status_code",
+    "question": "Is an API timeout itself an HTTP status code?",
+    "expected": "No, a timeout is not itself an HTTP status code.",
+    "must_avoid": "Assigning a specific HTTP status code to every timeout."
+  },
+  {
+    "id": "missing_information",
+    "question": "What is the default timeout in Spring Boot?",
+    "expected": "The reference does not contain enough information.",
+    "must_avoid": "Inventing a timeout value."
+  }
+]

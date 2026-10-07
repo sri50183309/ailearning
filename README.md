@@ -15,3 +15,12 @@ curl http://localhost:11434/api/tags -> list all models in ollama
 | **1 — Call a local model** | Python sent a fixed question to Qwen through Ollama’s HTTP API | Build a JSON request, send it, read the response, and measure elapsed time |
 | **2 — Accept user input** | Replaced the fixed question with `input()` | Make the script interactive; a successful API call can still produce an inaccurate answer |
 | **3 — Supply reference context** | Included a reference passage alongside the question | Ground answers in supplied information and test whether the model declines unsupported questions |
+
+====== Lesson 5 learning =====
+This suggests the model can find the relevant sentence, but struggles with our combined answer-or-refuse instructions. It doesn’t establish the precise cause.
+Let’s finish Lesson 05 by recording what we learned:
+- The reference reaches the model.
+- Answerable questions sometimes trigger false refusals.
+- Temperature 0 and a simpler prompt didn’t fix those cases.
+- Evidence extraction succeeded on this question.
+Keep the extraction prompt as an experiment, not our final assistant behaviour—we haven’t tested it on missing information.
