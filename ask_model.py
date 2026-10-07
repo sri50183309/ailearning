@@ -2,6 +2,7 @@ import json
 import time
 import urllib.request
 from pathlib import Path
+import re
 
 question = input("Your question: ").strip()
 
@@ -21,9 +22,37 @@ if not reference.strip():
     print("The reference file is empty.")
     raise SystemExit(1)
 
+stop_words = {
+    "a", "an", "the", "is", "are", "was", "what", "does",
+    "do", "can", "in", "of", "to", "and", "or", "it",
+}
+
+def keywords(text):
+    words = re.findall(r"[a-z0-9]+", text.lower())
+    return set(words) - stop_words
+
+paragraphs = [
+    paragraph.strip()
+    for paragraph in reference.split("\n\n")
+    if paragraph.strip()
+]
+
+question_words = keywords(question)
+
+scores = [
+    len(question_words & keywords(paragraph))
+    for paragraph in paragraphs
+]
+
+best_index = max(range(len(paragraphs)), key=lambda i: scores[i])
+selected_reference = paragraphs[best_index]
+
+print("\nKeyword overlap:", scores[best_index])
+print("Selected evidence:\n", selected_reference)
+
 grounded_prompt = f"""
 Reference:
-{reference}
+{selected_reference}
 
 Question:
 {question}
