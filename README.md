@@ -32,3 +32,16 @@ Lesson 06:
   but the output did not answer the question.
 - Keyword overlap measures shared words, not answerability.
 - Evidence extraction alone does not handle missing information.
+
+## Lesson 07 — Stop on Zero Keyword Matches
+
+Added a guard that exits before calling the model when the best
+paragraph has a keyword overlap score of zero.
+
+Test: "Who invented the bicycle?"
+Result: No matching keywords; the model was not called.
+
+This avoids sending an arbitrary paragraph and saves inference work.
+It does not establish whether an answer exists: keyword search can
+miss differently worded evidence, and positive matches can still
+be insufficient.

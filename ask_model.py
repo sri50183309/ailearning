@@ -45,6 +45,14 @@ scores = [
 ]
 
 best_index = max(range(len(paragraphs)), key=lambda i: scores[i])
+best_score = scores[best_index]
+
+if best_score == 0:
+    print(
+        "\nNo matching keywords were found in the reference. "
+        "The model was not called."
+    )
+    raise SystemExit
 selected_reference = paragraphs[best_index]
 
 print("\nKeyword overlap:", scores[best_index])
