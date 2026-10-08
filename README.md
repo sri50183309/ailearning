@@ -59,3 +59,22 @@ The flow is:
 Python sends HTTP POST → Ollama reads the JSON → loads/runs Qwen → returns JSON → Python displays the answer
 Qwen itself is primarily trained model weights plus its configuration, rather than a web application. Ollama supplies the HTTP interface and the runtime that performs inference.
 Later, our own backend will sit between the UI and Ollama, handling document retrieval, validation, and application logic.
+
+
+## Lesson 08 — Refactor the Pipeline into Functions
+
+Separated the script into:
+- load_reference(): read and validate the reference file.
+- keywords(): extract unique keywords.
+- retrieve_paragraph(): return selected evidence and its score.
+- build_prompt(): construct the model prompt.
+- call_model(): call Ollama and return the answer and elapsed time.
+- main(): coordinate terminal input and output.
+
+Both the answerable-question path and zero-match guard still work.
+
+The __main__ guard allows another script to import these functions
+without starting the interactive question prompt.
+
+This refactor improves reuse and testability; it does not improve
+retrieval accuracy or model answer quality.
