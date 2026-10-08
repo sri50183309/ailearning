@@ -1,0 +1,52 @@
+[
+  {
+    "id": "timeout_definition",
+    "question": "What is an API timeout?",
+    "score": 2,
+    "evidence": "An API timeout means an operation did not complete within its\nconfigured time limit. A client can time out without receiving\nany HTTP response. A timeout is not itself an HTTP status code.",
+    "expected": "An operation did not complete within its configured time limit.",
+    "must_avoid": "Claiming every timeout is caused by the client.",
+    "answer": "An API timeout means an operation did not complete within its configured time limit.",
+    "elapsed_seconds": 6.26
+  },
+  {
+    "id": "http_500_definition",
+    "question": "What does HTTP 500 mean?",
+    "score": 2,
+    "evidence": "HTTP 500 is an HTTP response status indicating that the server\nencountered an unexpected condition that prevented it from\nfulfilling the request.",
+    "expected": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
+    "must_avoid": "Claiming HTTP 500 means a timeout.",
+    "answer": "HTTP 500 is an HTTP response status indicating that the server encountered an unexpected condition that prevented it from fulfilling the request.",
+    "elapsed_seconds": 5.87
+  },
+  {
+    "id": "timeout_without_response",
+    "question": "Can a client time out without receiving an HTTP response?",
+    "score": 7,
+    "evidence": "An API timeout means an operation did not complete within its\nconfigured time limit. A client can time out without receiving\nany HTTP response. A timeout is not itself an HTTP status code.",
+    "expected": "Yes, a client can time out without receiving an HTTP response.",
+    "must_avoid": "Claiming this happens in every timeout.",
+    "answer": "A client can time out without receiving an HTTP response.",
+    "elapsed_seconds": 5.35
+  },
+  {
+    "id": "timeout_status_code",
+    "question": "Is an API timeout itself an HTTP status code?",
+    "score": 6,
+    "evidence": "An API timeout means an operation did not complete within its\nconfigured time limit. A client can time out without receiving\nany HTTP response. A timeout is not itself an HTTP status code.",
+    "expected": "No, a timeout is not itself an HTTP status code.",
+    "must_avoid": "Assigning a specific HTTP status code to every timeout.",
+    "answer": "A timeout is not itself an HTTP status code.",
+    "elapsed_seconds": 4.94
+  },
+  {
+    "id": "missing_information",
+    "question": "What is the default timeout in Spring Boot?",
+    "score": 1,
+    "evidence": "An API timeout means an operation did not complete within its\nconfigured time limit. A client can time out without receiving\nany HTTP response. A timeout is not itself an HTTP status code.",
+    "expected": "The reference does not contain enough information.",
+    "must_avoid": "Inventing a timeout value.",
+    "answer": "A client can time out without receiving any HTTP response.",
+    "elapsed_seconds": 5.1
+  }
+]

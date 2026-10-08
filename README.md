@@ -78,3 +78,23 @@ without starting the interactive question prompt.
 
 This refactor improves reuse and testability; it does not improve
 retrieval accuracy or model answer quality.
+
+## Lesson 09 — Automate Evaluation and Save Results
+
+Created evaluate.py to:
+- Load questions from evaluation_cases.json.
+- Reuse the retrieval, prompt, and model-call functions.
+- Run cases sequentially.
+- Save evidence, scores, answers, timings, and errors
+  to evaluation_results.json.
+
+Execution is automated; correctness is reviewed manually.
+
+The reviewed run passed 4 of 5 cases. The Spring Boot question
+returned a related sentence instead of acknowledging missing
+information.
+
+Current limitations:
+- Each run overwrites the results file.
+- Zero-match cases are skipped without being recorded.
+- Five questions are a small baseline, not a reliability guarantee.
